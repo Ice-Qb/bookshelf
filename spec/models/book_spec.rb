@@ -11,15 +11,27 @@ RSpec.describe Book, type: :model do
   it { is_expected.to respond_to(:publisher) }
   it { is_expected.to respond_to(:lists) }
 
-  it 'has the name which length is not a prime number' do
-    expect(book.name_length_prime?).to be false
-  end
+  context 'for methods related to prime numbers' do
+    let!(:faust_book) { create(:book, name: 'Faust') }
 
-  context "when book's name is a prime number" do
-    let(:book) { create(:book, name: 'Faust') }
+    describe '#name_length_prime?' do
+      it 'has the name which length is not a prime number' do
+        expect(book.name_length_prime?).to be false
+      end
 
-    it 'understands that' do
-      expect(book.name_length_prime?).to be true
+      it "understands when book's name is a prime number" do
+        expect(faust_book.name_length_prime?).to be true
+      end
+    end
+
+    describe '.prime_length_name_books' do
+      let!(:kolobok_book) { create(:book, name: 'kolobok') }
+
+      it 'returns all the books where their name lengths are the prime '\
+         'numbers' do
+        expect(described_class.prime_length_name_books).
+          to eq [faust_book, kolobok_book]
+      end
     end
   end
 end

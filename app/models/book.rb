@@ -7,4 +7,9 @@ class Book < ApplicationRecord
   def name_length_prime?
     Prime.prime? name.length
   end
+
+  def self.prime_length_name_books
+    ids = all.map { |book| book.id if book.name_length_prime? }.compact
+    where(id: ids)
+  end
 end
