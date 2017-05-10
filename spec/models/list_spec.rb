@@ -5,4 +5,5 @@ RSpec.describe List, type: :model do
 
   it { is_expected.to be_present }
   it { is_expected.to respond_to(:name) }
+  it { is_expected.to respond_to(:books) }
 end

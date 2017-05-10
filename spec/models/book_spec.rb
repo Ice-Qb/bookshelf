@@ -9,4 +9,5 @@ RSpec.describe Book, type: :model do
   it { is_expected.to respond_to(:genres) }
   it { is_expected.to respond_to(:authors) }
   it { is_expected.to respond_to(:publisher) }
+  it { is_expected.to respond_to(:lists) }
 end
