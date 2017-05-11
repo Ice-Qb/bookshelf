@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   get '/books/prime', to: 'books#prime'
 
   resources :articles, only: %i[index]
+  get '/search/filter', to: 'search#filter'
 end
