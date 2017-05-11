@@ -16,4 +16,12 @@ class Book < ApplicationRecord
     ids = all.map { |book| book.id if book.name_length_prime? }.compact
     where(id: ids)
   end
+
+  def self.top_discount_books(number)
+    includes(:lists, :single_sorts).
+      references(:single_sorts).
+      where('lists.name = ?', 'discount').
+      order('single_sorts.position DESC').
+      limit(number)
+  end
 end

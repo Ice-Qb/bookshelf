@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :single_sort do
     position 1
-    list
-    book
+    list nil
+    book nil
   end
 end

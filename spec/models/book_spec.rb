@@ -49,4 +49,24 @@ RSpec.describe Book, type: :model do
       expect(PgSearch.multisearch('The Master')).to be_empty
     end
   end
+
+  describe '.top_discount_books' do
+    let(:number) { 5 }
+    before do
+      discount_list = create(:list, name: 'discount')
+      10.times do
+        book = create(:book)
+        single_sort = create(
+          :single_sort,
+          book_id: book.id,
+          list_id: discount_list.id,
+          position: rand(1..5)
+        )
+      end
+    end
+
+    it 'returns top 5 books from discount list' do
+      expect(described_class.top_discount_books(number).size).to eq number
+    end
+  end
 end
