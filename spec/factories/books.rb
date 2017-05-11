@@ -5,5 +5,8 @@ FactoryGirl.define do
     genres 'Mysticism'
     authors 'Mikhail Bulgakov'
     publisher 'YMCA Press'
+    factory :prime_book do
+      name 'Faust'
+    end
   end
 end
