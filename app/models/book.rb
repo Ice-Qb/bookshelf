@@ -1,6 +1,10 @@
 require 'prime'
 
 class Book < ApplicationRecord
+  include PgSearch
+
+  multisearchable against: %i[name genres authors publisher], if: :available?
+
   has_many :single_sorts
   has_many :lists, through: :single_sorts
 
